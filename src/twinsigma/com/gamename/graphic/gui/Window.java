@@ -3,6 +3,8 @@ package twinsigma.com.gamename.graphic.gui;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
@@ -12,6 +14,8 @@ public abstract class Window {
 	
 	public JFrame frame;
 	public JPanel panel;
+	
+	public static int WIDTH,HEIGHT;
 	
 	public Window(){
 		frame = new JFrame("Twin Sigma");
@@ -24,6 +28,13 @@ public abstract class Window {
 				drawScreen(g2d);
 			}
 		};
+		panel.addComponentListener(new ComponentAdapter(){
+			@Override
+			public void componentResized(ComponentEvent e){
+				WIDTH = e.getComponent().getWidth();
+				HEIGHT = e.getComponent().getHeight();
+			}
+		});
 		panel.setDoubleBuffered(true);
 		frame.add(panel);
 		frame.pack();
