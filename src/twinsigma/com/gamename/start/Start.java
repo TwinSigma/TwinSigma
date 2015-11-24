@@ -9,8 +9,6 @@ public class Start {
 	
 	public static void main(String[] args){
 		game = new GameName();
-		System.out.println("Test commit");
-		System.out.println("Test commit 2");
 	}
 
 }
