@@ -9,6 +9,7 @@ public class Start {
 	
 	public static void main(String[] args){
 		game = new GameName();
+		System.out.println("Hello");
 	}
 
 }
