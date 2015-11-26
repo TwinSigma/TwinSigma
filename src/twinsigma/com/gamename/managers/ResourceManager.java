@@ -72,6 +72,7 @@ public class ResourceManager {
 				while(!new String(first).equals("\n")){
 					toRead = Arrays.copyOf(toRead, toRead.length+1);
 					toRead[toRead.length-1] = first[0];
+					fis.read(first);
 				}
 				int read = Integer.parseInt(new String(toRead));
 				byte[] bImg = new byte[read];
