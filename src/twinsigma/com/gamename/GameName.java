@@ -4,6 +4,8 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import twinsigma.com.gamename.elements.Background;
+import twinsigma.com.gamename.elements.Scene;
 import twinsigma.com.gamename.graphic.gui.Gui;
 import twinsigma.com.gamename.graphic.gui.LogoGui;
 import twinsigma.com.gamename.graphic.gui.TextFieldGui;
@@ -16,7 +18,12 @@ public class GameName implements KeyListener{
 	public Gui currentGui;
 	public ResourceManager resourceManager;
 	
+	public Scene scene;
+	
+	private static GameName instance;
+	
 	public GameName(){
+		instance = this;
 		Thread gameLoop = new Thread("Game Loop"){
 			@Override
 			public void run(){
@@ -37,6 +44,8 @@ public class GameName implements KeyListener{
 				};
 				window.addKeyListener(GameName.this);
 				resourceManager.loadAllResources();
+				scene = new Scene(new Background(0, 0, Window.WIDTH, Window.HEIGHT, 0, ResourceManager.grass));
+				System.out.println(scene.elements.get(0).width);
 				gameLoop.start();
 			}
 		};
@@ -45,10 +54,10 @@ public class GameName implements KeyListener{
 	
 	public void gameLoop(){
 		while(true){
-			
+			currentGui.update();
 			window.repaint();
 			try {
-				Thread.sleep(20);
+				Thread.sleep(16);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -72,6 +81,14 @@ public class GameName implements KeyListener{
 	@Override
 	public void keyTyped(KeyEvent e) {
 		
+	}
+	
+	public static GameName getInstance(){
+		return instance;
+	}
+	
+	public void resizeGui(){
+		this.currentGui.screenUpdate();
 	}
 
 }
