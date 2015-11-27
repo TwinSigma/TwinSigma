@@ -8,7 +8,7 @@ public class SceneElement {
 	public double width,height;
 	public double rotation;
 	
-	public Sprite sprite;
+	private Sprite sprite;
 	
 	public SceneElement(double x, double y, double width, double height, double rotation, Sprite img){
 		this.x = x;
@@ -35,5 +35,11 @@ public class SceneElement {
 	public SceneElement(double x, double y, Sprite img){
 		this(x,y,img.getWidth(),img.getHeight(),0,img);
 	}
+	
+	public Sprite getSprite(){
+		return this.sprite;
+	}
+	
+	public void screenChange(){}
 
 }
