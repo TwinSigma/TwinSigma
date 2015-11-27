@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.io.InputStream;
 import java.util.Arrays;
 import java.util.HashMap;
 
@@ -18,7 +18,7 @@ public class ResourceManager {
 	public static final String sprPath = "/twinsigma/com/gamename/resources/sprites/";
 	
 	private static BufferedImage logo;
-	private static HashMap<String,BufferedImage> images = new HashMap<String,BufferedImage>();
+	public static Sprite grass;
 	
 	public ResourceManager(){
 		
@@ -26,14 +26,11 @@ public class ResourceManager {
 	
 	public void loadLogo(){
 		logo = loadImage("logo");
+		grass = loadSprite("grass");
 	}
 	
 	public void loadAllResources(){
 		
-	}
-	
-	public static BufferedImage getImg(String name){
-		return images.get(name);
 	}
 	
 	public static BufferedImage getLogo(){
@@ -44,20 +41,20 @@ public class ResourceManager {
 		BufferedImage ret = null;
 		try {
 			ret = ImageIO.read(this.getClass().getResource(texPath + name + ".png"));
-
+			return ret;
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.err.println("Failed to load image " + name);
+			System.exit(-1);
 		}
-		images.put(name, ret);
-		return ret;
+		return null;
 	}
 	
 	public Sprite loadSprite(String name){
 		try{
 			BufferedImage[] frames = new BufferedImage[0];
 			int fps = 1;
-			FileInputStream fis = new FileInputStream(sprPath + name + ".spr");
+			InputStream fis = this.getClass().getResourceAsStream(sprPath + name + ".spr");
 			byte[] first = new byte[1];
 			while(fis.read(first) != -1){
 				byte[] toRead = new byte[0];
@@ -85,6 +82,7 @@ public class ResourceManager {
 			fis.close();
 			return new Sprite(fps, frames);
 		}catch (IOException e){
+			e.printStackTrace();
 			System.err.println("Failed to load sprite " + name);
 			System.exit(-1);
 		}
