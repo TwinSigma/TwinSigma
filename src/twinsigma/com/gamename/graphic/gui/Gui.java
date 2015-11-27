@@ -18,9 +18,13 @@ public abstract class Gui {
 		return new Rectangle(x, y, width, height);
 	}
 	
+	public void update(){}
+	
 	public void onType(int c){}
 	
 	public void onUnType(int c){}
+	
+	public void screenUpdate(){}
 	
 	public abstract void draw(Graphics2D g2d);
 
