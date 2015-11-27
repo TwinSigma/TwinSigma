@@ -10,12 +10,15 @@ import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import twinsigma.com.gamename.GameName;
+
 public abstract class Window {
 	
 	public JFrame frame;
 	public JPanel panel;
 	
-	public static int WIDTH,HEIGHT;
+	public static int WIDTH = 800;
+	public static int HEIGHT = 600;
 	
 	public Window(){
 		frame = new JFrame("Twin Sigma");
@@ -33,12 +36,15 @@ public abstract class Window {
 			public void componentResized(ComponentEvent e){
 				WIDTH = e.getComponent().getWidth();
 				HEIGHT = e.getComponent().getHeight();
+				GameName.getInstance().resizeGui();
 			}
 		});
 		panel.setDoubleBuffered(true);
 		frame.add(panel);
 		frame.pack();
-		frame.setSize(800, 800);
+		frame.setSize(800, 600);
+		WIDTH = panel.getWidth();
+		HEIGHT = panel.getHeight();
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
