@@ -5,14 +5,16 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import twinsigma.com.gamename.elements.Background;
+import twinsigma.com.gamename.elements.Player;
 import twinsigma.com.gamename.elements.Scene;
 import twinsigma.com.gamename.graphic.gui.Gui;
 import twinsigma.com.gamename.graphic.gui.LogoGui;
 import twinsigma.com.gamename.graphic.gui.TextFieldGui;
 import twinsigma.com.gamename.graphic.gui.Window;
+import twinsigma.com.gamename.input.Input;
 import twinsigma.com.gamename.managers.ResourceManager;
 
-public class GameName implements KeyListener{
+public class GameName{
 	
 	public Window window;
 	public Gui currentGui;
@@ -42,10 +44,10 @@ public class GameName implements KeyListener{
 						GameName.this.drawScreen(g2d);
 					}
 				};
-				window.addKeyListener(GameName.this);
+				window.addKeyListener(new Input());
 				resourceManager.loadAllResources();
-				scene = new Scene(new Background(0, 0, Window.WIDTH, Window.HEIGHT, 0, ResourceManager.grass));
-				System.out.println(scene.elements.get(0).width);
+				scene = new Scene(new Background(0, 0, Window.WIDTH, Window.HEIGHT, 0, ResourceManager.grass),
+						new Player(10, 10, 50, 50, 0, ResourceManager.player));
 				gameLoop.start();
 			}
 		};
@@ -66,21 +68,6 @@ public class GameName implements KeyListener{
 	
 	public void drawScreen(Graphics2D g2d){
 		currentGui.draw(g2d);
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-		currentGui.onType(e.getKeyCode());
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		currentGui.onUnType(e.getKeyCode());
-	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-		
 	}
 	
 	public static GameName getInstance(){
