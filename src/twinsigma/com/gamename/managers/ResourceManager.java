@@ -2,6 +2,7 @@ package twinsigma.com.gamename.managers;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -56,7 +57,7 @@ public class ResourceManager {
 		try{
 			BufferedImage[] frames = new BufferedImage[0];
 			int fps = 1;
-			InputStream fis = this.getClass().getResourceAsStream(sprPath + name + ".spr");
+			DataInputStream fis = new DataInputStream(this.getClass().getResourceAsStream(sprPath + name + ".spr"));
 			byte[] first = new byte[1];
 			while(fis.read(first) != -1){
 				byte[] toRead = new byte[0];
@@ -75,7 +76,7 @@ public class ResourceManager {
 				}
 				int read = Integer.parseInt(new String(toRead));
 				byte[] bImg = new byte[read];
-				fis.read(bImg);
+				fis.readFully(bImg);
 				fis.skip(1);
 				frames = Arrays.copyOf(frames, frames.length+1);
 				ByteArrayInputStream bias = new ByteArrayInputStream(bImg);
