@@ -19,6 +19,7 @@ public class ResourceManager {
 	
 	private static BufferedImage logo;
 	public static Sprite grass;
+	public static Sprite player;
 	
 	public ResourceManager(){
 		
@@ -27,6 +28,7 @@ public class ResourceManager {
 	public void loadLogo(){
 		logo = loadImage("logo");
 		grass = loadSprite("grass");
+		player = loadSprite("player");
 	}
 	
 	public void loadAllResources(){
