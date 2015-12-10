@@ -9,7 +9,7 @@ import twinsigma.com.gamename.GameName;
 
 public class Input implements KeyListener, MouseListener{
 	
-	private static boolean[] key = new boolean[256];
+	private static boolean[] key = new boolean[600];
 	private static boolean[] mouse = new boolean[3];
 	
 	public static boolean isKeyPressed(int k){
