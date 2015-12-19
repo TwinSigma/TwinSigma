@@ -7,7 +7,7 @@ import twinsigma.com.gamename.sound.Sound;
 
 public class SoundHandler {
 	
-	public static final String path = "/twinsigma/com/resources/sounds/";
+	public static final String path = "/twinsigma/com/gamename/resources/sounds/";
 	
 	private static ArrayList<Sound> cache = new ArrayList<Sound>();
 	
@@ -32,10 +32,14 @@ public class SoundHandler {
 			}
 		}
 		URL url = SoundHandler.class.getResource(path + name + ".mp3");
-		Media media = new Media(url.getFile());
-		Sound sound = new Sound(name, media);
-		cache.add(sound);
-		sound.playSound();
+		if(url != null){
+			Media media = new Media(url.toExternalForm());
+			Sound sound = new Sound(name, media);
+			cache.add(sound);
+			sound.playSound();
+		}else{
+			System.out.println("Unable to locate sound");
+		}
 	}
 	
 	private void handleCache(){
