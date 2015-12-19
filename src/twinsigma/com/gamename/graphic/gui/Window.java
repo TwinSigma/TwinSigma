@@ -10,6 +10,8 @@ import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import javafx.embed.swing.JFXPanel;
+
 import twinsigma.com.gamename.GameName;
 
 public abstract class Window {
@@ -21,6 +23,7 @@ public abstract class Window {
 	public static int HEIGHT = 600;
 	
 	public Window(){
+		new JFXPanel();
 		frame = new JFrame("Twin Sigma");
 		frame.setBackground(Color.black);
 		panel = new JPanel(){
