@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 
 import twinsigma.com.gamename.GameName;
 import twinsigma.com.gamename.managers.ResourceManager;
+import twinsigma.com.gamename.managers.SoundHandler;
 
 public class LogoGui extends Gui{
 	
@@ -18,6 +19,7 @@ public class LogoGui extends Gui{
 		wait++;
 		if(wait == 120){
 			GameName.getInstance().currentGui = new InGameGui();
+			SoundHandler.playSound("punch");
 		}
 	}
 
