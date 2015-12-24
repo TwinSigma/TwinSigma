@@ -8,7 +8,10 @@ public class Scene {
 	public ArrayList<SceneElement> elements = new ArrayList<SceneElement>();
 	public ArrayList<MovableElement> moveElements = new ArrayList<MovableElement>();
 	
-	public Scene(SceneElement... element){
+	public PerspectiveEnum perspective;
+	
+	public Scene(PerspectiveEnum persp, SceneElement... element){
+		this.perspective = persp;
 		for(SceneElement e : element){
 			if(e instanceof MovableElement){
 				moveElements.add((MovableElement) e);
@@ -40,6 +43,14 @@ public class Scene {
 		for(MovableElement e : moveElements){
 			e.screenChange();
 		}
+	}
+	
+	public boolean isOverhead(){
+		return this.perspective == PerspectiveEnum.OVERHEAD;
+	}
+	
+	public boolean isSideScroll(){
+		return this.perspective == PerspectiveEnum.SIDESCROLL;
 	}
 
 }
