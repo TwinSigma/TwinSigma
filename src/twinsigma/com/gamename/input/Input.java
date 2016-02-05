@@ -5,9 +5,12 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import net.java.games.input.Controller;
 import twinsigma.com.gamename.GameName;
 
 public class Input implements KeyListener, MouseListener{
+	
+	private static JInputJoystick controller = new JInputJoystick(Controller.Type.STICK);
 	
 	private static boolean[] key = new boolean[600];
 	private static boolean[] mouse = new boolean[3];
@@ -18,6 +21,14 @@ public class Input implements KeyListener, MouseListener{
 	
 	public static boolean isMousePressed(int mb){
 		return mouse[mb];
+	}
+	
+	public static JInputJoystick getController(){
+		return controller;
+	}
+	
+	public static boolean isControllerConnected(){
+		return controller.isControllerConnected();
 	}
 
 	@Override
