@@ -22,9 +22,7 @@ public class ResourceManager {
 	public static Sprite grass;
 	public static Sprite player;
 	
-	public ResourceManager(){
-		
-	}
+	public ResourceManager(){}
 	
 	public void loadLogo(){
 		logo = loadImage("logo");
