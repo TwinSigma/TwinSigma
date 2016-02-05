@@ -32,6 +32,10 @@ public class Player extends MovableElement{
 		}else if(Input.isKeyPressed(KeyEvent.VK_D)){
 			this.xMotion = 2;
 		}
+		if(Input.isControllerConnected()){
+			this.xMotion = Input.getController().getXAxisValue() * 2;
+			this.yMotion = Input.getController().getYAxisValue() * 2;
+		}
 	}
 
 }
